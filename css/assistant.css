@@ -1,0 +1,69 @@
+/* Floating Smart Assistant */
+#vam-assistant-root{font-family:Vazirmatn,Tahoma,Arial,sans-serif}
+.vam-assistant-fab{position:fixed;z-index:300;right:24px;bottom:24px;width:68px;height:68px;border:0;border-radius:22px;background:linear-gradient(145deg,#0f172a,#1e293b);color:#fff;box-shadow:0 14px 35px rgba(15,23,42,.28),0 0 0 1px rgba(255,255,255,.16) inset;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:27px;transition:transform .2s ease,box-shadow .2s ease}
+.vam-assistant-fab:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 18px 42px rgba(15,23,42,.34),0 0 0 1px rgba(255,255,255,.2) inset}
+.vam-assistant-fab b{position:absolute;bottom:-25px;font-size:10px;font-weight:800;color:#475569;background:rgba(255,255,255,.9);padding:3px 7px;border-radius:9px;box-shadow:0 4px 12px rgba(15,23,42,.08)}
+.vam-bot-pulse{position:absolute;inset:-3px;border-radius:17px;border:2px solid rgba(99,102,241,.28);animation:vamPulse 2.1s infinite;pointer-events:none}
+@keyframes vamPulse{0%,100%{transform:scale(.94);opacity:.2}50%{transform:scale(1.08);opacity:.75}}
+.vam-assistant-overlay{position:fixed;inset:0;z-index:299;background:rgba(15,23,42,.18);backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:opacity .18s ease,visibility .18s ease}
+.vam-assistant-overlay.open{opacity:1;visibility:visible}
+.vam-assistant-panel{position:absolute;right:24px;bottom:105px;width:min(410px,calc(100vw - 30px));height:min(610px,calc(100vh - 130px));background:rgba(255,255,255,.97);border:1px solid rgba(148,163,184,.25);border-radius:26px;box-shadow:0 25px 70px rgba(15,23,42,.25);overflow:hidden;display:flex;flex-direction:column;transform:translateY(16px) scale(.98);transition:transform .2s ease}
+.vam-assistant-overlay.open .vam-assistant-panel{transform:none}
+.vam-assistant-head{padding:15px 16px;background:linear-gradient(135deg,#0f172a,#1e293b);color:white;display:flex;align-items:center;justify-content:space-between}
+.vam-assistant-title{display:flex;align-items:center;gap:10px}.vam-assistant-title strong{display:block;font-size:15px}.vam-assistant-title small{display:block;color:#cbd5e1;font-size:10px;margin-top:2px}.vam-assistant-head-icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.13);font-size:20px}.vam-assistant-close{border:0;background:rgba(255,255,255,.1);color:#fff;width:34px;height:34px;border-radius:11px;font-size:24px;cursor:pointer}
+.vam-assistant-messages{flex:1;overflow:auto;padding:15px 13px 8px;background:linear-gradient(180deg,#f8fafc,#fff)}
+.vam-assistant-msg{display:flex;gap:8px;margin:0 0 12px;align-items:flex-end}.vam-assistant-msg.user{justify-content:flex-start;direction:rtl}.vam-assistant-msg.bot{direction:rtl}.vam-assistant-avatar{flex:0 0 31px;width:31px;height:31px;border-radius:10px;background:#0f172a;color:#fff;display:grid;place-items:center;font-size:14px}.vam-assistant-bubble{max-width:82%;padding:10px 12px;border-radius:15px;line-height:1.85;font-size:12px;color:#334155;background:#fff;border:1px solid #e2e8f0;box-shadow:0 3px 12px rgba(15,23,42,.04)}.vam-assistant-msg.user .vam-assistant-bubble{background:#e0e7ff;border-color:#c7d2fe;color:#1e1b4b}
+.vam-assistant-typing{display:none;padding:0 15px 7px;color:#64748b;font-size:10px}.vam-assistant-typing.show{display:block}
+.vam-assistant-quick{display:flex;gap:6px;padding:7px 10px;overflow:auto;border-top:1px solid #e2e8f0;background:#fff}.vam-assistant-quick button{white-space:nowrap;border:1px solid #dbeafe;background:#f8fafc;color:#334155;border-radius:10px;padding:6px 9px;font-family:inherit;font-size:10px;cursor:pointer}.vam-assistant-quick button:hover{background:#eef2ff}
+.vam-assistant-input{display:flex;gap:7px;padding:10px;background:#fff;border-top:1px solid #e2e8f0}.vam-assistant-input input{min-width:0;flex:1;border:1px solid #cbd5e1;border-radius:14px;padding:10px 12px;font-family:inherit;font-size:12px;outline:none;direction:rtl}.vam-assistant-input input:focus{border-color:#818cf8;box-shadow:0 0 0 3px rgba(99,102,241,.1)}.vam-assistant-input button{width:42px;border:0;border-radius:13px;background:#0f172a;color:#fff;cursor:pointer}
+@media(max-width:600px){.vam-assistant-fab{right:14px;bottom:14px;width:44px;height:44px;border-radius:14px;font-size:18px}.vam-assistant-panel{right:10px;bottom:88px;width:calc(100vw - 20px);height:min(600px,calc(100vh - 105px));border-radius:22px}}
+.vam-assistant-action{border:1px solid #c7d2fe;background:#eef2ff;color:#312e81;border-radius:9px;padding:5px 9px;font-family:inherit;font-size:10px;cursor:pointer}.vam-assistant-action:hover{background:#e0e7ff}
+
+.vam-assistant-voice{flex:0 0 42px!important}.vam-assistant-voice.listening{animation:vamVoicePulse .9s infinite;transform:scale(1.04)}.vam-assistant-voice:disabled{opacity:.45;cursor:not-allowed}@keyframes vamVoicePulse{0%,100%{box-shadow:0 0 0 0 rgba(99,102,241,.35)}50%{box-shadow:0 0 0 7px rgba(99,102,241,0)}}
+
+.vam-assistant-card{background:rgba(248,250,252,.9);border:1px solid #e2e8f0;border-radius:14px;padding:10px;margin-top:7px;direction:rtl}.vam-assistant-form{display:grid;gap:8px;margin-top:8px}.vam-assistant-form label{font-size:10px;color:#64748b;display:grid;gap:4px}.vam-assistant-form input,.vam-assistant-form select{width:100%;box-sizing:border-box;border:1px solid #cbd5e1;border-radius:9px;padding:7px 9px;font:inherit;font-size:11px;direction:rtl;background:#fff}.vam-assistant-primary{border:0;border-radius:9px;padding:8px 10px;background:#0f172a;color:#fff;font-family:inherit;cursor:pointer}.vam-assistant-list{margin-top:7px}.vam-assistant-list-row{display:flex;align-items:center;justify-content:space-between;gap:7px;padding:7px 0;border-bottom:1px solid #e2e8f0;font-size:10px}.vam-assistant-list-row:last-child{border-bottom:0}.vam-assistant-list-row small{color:#64748b}.vam-assistant-inline{border:1px solid #c7d2fe;background:#eef2ff;color:#312e81;border-radius:7px;padding:4px 7px;font-family:inherit;font-size:9px;cursor:pointer}.vam-assistant-inline.danger{background:#fff1f2;border-color:#fecdd3;color:#be123c}.vam-assistant-table{margin-top:7px;max-height:260px;overflow:auto;font-size:10px;line-height:1.9}.vam-assistant-table>div{padding:5px 0;border-bottom:1px solid #e2e8f0}
+
+
+/* v8.3.18 UI polish: assistant matches the floating glass controls and never covers content. */
+.vam-assistant-fab{right:max(20px,env(safe-area-inset-right));bottom:max(20px,env(safe-area-inset-bottom));}
+@media(max-width:600px){.vam-assistant-fab{right:max(14px,env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom));}}
+.vam-assistant-fab .vam-bot-pulse{pointer-events:none;}
+
+/* v8.3.18: assistant is a single member of the existing floating glass stack. */
+#vam-assistant-root { pointer-events:none; }
+#vam-assistant-root .vam-assistant-overlay { pointer-events:auto; }
+#fab-assistant.fab-assistant {
+  position:relative !important;
+  right:auto !important;
+  bottom:auto !important;
+  width:52px !important;
+  height:52px !important;
+  min-width:52px !important;
+  min-height:52px !important;
+  border-radius:50% !important;
+  border:1px solid rgba(255,255,255,.7) !important;
+  background:rgba(255,255,255,.28) !important;
+  backdrop-filter:blur(20px) saturate(2) !important;
+  -webkit-backdrop-filter:blur(20px) saturate(2) !important;
+  color:#4338ca !important;
+  box-shadow:0 6px 18px rgba(15,23,42,.1),inset 0 1px 0 rgba(255,255,255,.85) !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  padding:0 !important;
+  font-size:20px !important;
+  overflow:hidden;
+}
+#fab-assistant.fab-assistant:hover { transform:translateY(-2px); }
+#fab-assistant.fab-assistant:active { transform:scale(.94); background:rgba(255,255,255,.4) !important; }
+#fab-assistant.fab-assistant i { margin:0 !important; line-height:1; }
+#fab-assistant .vam-bot-pulse, #fab-assistant b { display:none !important; }
+body.dark-theme #fab-assistant.fab-assistant {
+  background:rgba(30,41,59,.45) !important;
+  color:#c7d2fe !important;
+  border-color:rgba(255,255,255,.18) !important;
+  box-shadow:0 6px 18px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.08) !important;
+}
+@media(max-width:600px){
+  #fab-assistant.fab-assistant{width:46px !important;height:46px !important;min-width:46px !important;min-height:46px !important;font-size:18px !important;}
+}
